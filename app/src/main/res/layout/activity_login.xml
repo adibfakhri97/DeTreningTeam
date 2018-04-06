@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.detrening.detrening.Login"
+    >
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="50dp"
+        android:paddingRight="12dp"
+        android:paddingLeft="12dp"
+        android:background="@drawable/theme">
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="250dp"
+            android:layout_height="150dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/logob"
+            android:background="@drawable/shape_logo"
+            />
+
+        <ImageView
+            android:id="@+id/emailogo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/emailLogin"
+            android:layout_alignRight="@+id/emailLogin"
+            android:layout_alignTop="@+id/emailLogin"
+            android:layout_marginEnd="11dp"
+            android:layout_marginRight="11dp"
+            android:src="@drawable/ic_email_black_24dp" />
+
+        <ImageView
+            android:id="@+id/passlogo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/emailogo"
+            android:layout_alignStart="@+id/emailogo"
+            android:layout_alignTop="@+id/passwordLogin"
+            android:src="@drawable/ic_security_black_24dp" />
+
+        <EditText
+            android:id="@+id/emailLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/logo"
+            android:layout_marginTop="18dp"
+            android:autofillHints="masukkan email anda"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:shadowColor="@android:color/white"
+            android:textColor="@android:color/white" />
+
+        <EditText
+            android:id="@+id/passwordLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/emailLogin"
+            android:layout_marginTop="11dp"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:shadowColor="@android:color/white"
+            android:textColor="@android:color/white"
+            />
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/passwordLogin"
+            android:layout_marginTop="16dp"
+            android:text="Login"
+            android:backgroundTint="@color/cyanterang"
+            android:onClick="fungsiLogin"/>
+
+        <TextView
+            android:id="@+id/register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btnLogin"
+            android:layout_centerHorizontal="true"
+            android:clickable="true"
+            android:text="Sign Up Here"
+            android:textColor="@android:color/white"
+            android:onClick="intentDaftar"/>
+
+        <TextView
+            android:id="@+id/forgotPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/register"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:clickable="true"
+            android:text="Forgot Password?"
+            android:textColor="@android:color/white"
+            android:onClick="forgotPassword"/>
+    </RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>
