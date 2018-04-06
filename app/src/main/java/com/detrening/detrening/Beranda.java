@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,15 +16,36 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import org.w3c.dom.Text;
 
 public class Beranda extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private FirebaseAuth nAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
+    FirebaseDatabase firebaseInstance;
+    DatabaseReference firebaseDatabase;
+
+    TextView infoNama, infoEmail, infoBerat, infoTinggi, infoIdeal;
+    ImageView infoFoto;
+
+    public static String emailUser;
+    FirebaseUser firebaseUser;
+    Firebase mRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +55,7 @@ public class Beranda extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         nAuth = FirebaseAuth.getInstance();
+        firebaseUser = nAuth.getCurrentUser();
 
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -46,6 +69,36 @@ public class Beranda extends AppCompatActivity
             }
         };
 
+        infoFoto = (ImageView) findViewById(R.id.fotoInfo);
+        infoNama = (TextView) findViewById(R.id.namaInfo);
+        infoEmail = (TextView) findViewById(R.id.emailInfo);
+        infoBerat = (TextView) findViewById(R.id.beratInfo);
+        infoTinggi = (TextView) findViewById(R.id.tinggiInfo);
+        infoIdeal = (TextView) findViewById(R.id.idealInfo);
+
+//        firebaseInstance = FirebaseDatabase.getInstance();
+//        firebaseDatabase = firebaseInstance.getReference("DeTrening");
+//
+//        firebaseDatabase.child(emailUser).addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                AdapterSideBar adapter = dataSnapshot.getValue(AdapterSideBar.class);
+//                if (adapter == null){
+//                    return;
+//                }
+//                infoNama.setText(adapter.nama);
+//                infoEmail.setText(adapter.email);
+//                infoBerat.setText(adapter.berat);
+//                infoTinggi.setText(adapter.tinggi);
+//
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -55,7 +108,32 @@ public class Beranda extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        emailUser = firebaseUser.getEmail().toString();
+
+   //     loadInfo();
+
     }
+
+    public void loadInfo(){
+        mRef = new Firebase("https://console.firebase.google.com/u/0/project/detreningroject/database/detreningroject/data/DeTrening/-L9PjADeC-ekscjjIZsK/nama");
+        mRef.addValueEventListener(new com.firebase.client.ValueEventListener() {
+            @Override
+            public void onDataChange(com.firebase.client.DataSnapshot dataSnapshot) {
+                String value = dataSnapshot.getValue(String.class);
+
+                infoNama.setText(value);
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
+
+    }
+
 
     public void fungsiLogout(){
         nAuth.signOut();
