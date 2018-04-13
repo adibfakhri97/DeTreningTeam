@@ -34,7 +34,10 @@
         <activity
             android:name=".EditProfile"
             android:parentActivityName=".Beranda" />
-        <activity android:name=".TimeLine"></activity>
+        <activity android:name=".FreeChat"
+            android:parentActivityName=".Beranda"/>
+        <activity android:name=".TipsTrik"
+            android:parentActivityName=".Beranda"></activity>
     </application>
 
 </manifest>

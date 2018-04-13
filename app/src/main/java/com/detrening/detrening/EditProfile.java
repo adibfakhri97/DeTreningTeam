@@ -44,6 +44,7 @@ public class EditProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
+        setTitle("Edit Profile");
 
         storageReference = FirebaseStorage.getInstance().getReference();
         databaseReference = FirebaseDatabase.getInstance().getReference(Database_Path);
@@ -120,6 +121,7 @@ public class EditProfile extends AppCompatActivity {
                     databaseReference.child(ImageUploadId).setValue(imageUploadInfo);
                     Intent intent = new Intent(EditProfile.this, Beranda.class);
                     startActivity(intent);
+                    finish();
 
                 }
             }).addOnFailureListener(new OnFailureListener() {

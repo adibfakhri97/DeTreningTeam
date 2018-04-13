@@ -30,13 +30,13 @@
             android:background="@color/cyan"/>
 
         <Button
-            android:id="@+id/btnTimeLine"
+            android:id="@+id/btnFreeChat"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-            android:text="TimeLine"
+            android:text="Free Chat"
             android:textSize="35dp"
             android:shadowColor="@android:color/white"
             android:textColor="@android:color/white"

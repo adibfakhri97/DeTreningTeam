@@ -15,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -43,9 +44,11 @@ public class Beranda extends AppCompatActivity
     TextView infoNama, infoEmail, infoBerat, infoTinggi, infoIdeal;
     ImageView infoFoto;
 
-    public static String emailUser;
+    public static String emailUser, infoUser;
     FirebaseUser firebaseUser;
     Firebase mRef;
+
+    Button btnTips, btnChat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +64,8 @@ public class Beranda extends AppCompatActivity
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
+        //        infoUser = user.getEmail().toString().trim();
+      //          infoEmail.setText(infoUser);
 
                 if (user == null){
                     startActivity(new Intent(Beranda.this, Login.class));
@@ -75,6 +80,24 @@ public class Beranda extends AppCompatActivity
         infoBerat = (TextView) findViewById(R.id.beratInfo);
         infoTinggi = (TextView) findViewById(R.id.tinggiInfo);
         infoIdeal = (TextView) findViewById(R.id.idealInfo);
+
+        btnChat = (Button) findViewById(R.id.btnFreeChat);
+        btnChat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Beranda.this, FreeChat.class);
+                startActivity(intent);
+            }
+        });
+
+        btnTips = (Button) findViewById(R.id.btnTips);
+        btnTips.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Beranda.this, TipsTrik.class);
+                startActivity(intent);
+            }
+        });
 
 //        firebaseInstance = FirebaseDatabase.getInstance();
 //        firebaseDatabase = firebaseInstance.getReference("DeTrening");
@@ -111,6 +134,7 @@ public class Beranda extends AppCompatActivity
 
 
         emailUser = firebaseUser.getEmail().toString();
+
 
    //     loadInfo();
 
@@ -183,7 +207,6 @@ public class Beranda extends AppCompatActivity
                 Toast.makeText(Beranda.this, "Edit Profile", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(Beranda.this, EditProfile.class);
                 startActivity(intent);
-                finish();
                 break;
             case R.id.nav_beratBadan:
                 Toast.makeText(Beranda.this, "Weight and High", Toast.LENGTH_SHORT).show();
