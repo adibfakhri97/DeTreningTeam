@@ -1,4 +1,4 @@
-package com.detrening.detrening;
+package com.detrening.detrening.Profil;
 
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
@@ -16,6 +16,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.detrening.detrening.Home.Beranda;
+import com.detrening.detrening.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;

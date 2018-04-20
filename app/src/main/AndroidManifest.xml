@@ -13,11 +13,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Beranda"
+            android:name=".Home.Beranda"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Login"
+            android:name=".Authentication.Login"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,18 +26,37 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SignUp"
+            android:name=".Authentication.SignUp"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".resetPassword"
-            android:parentActivityName=".Login" />
+            android:name=".Authentication.resetPassword"
+            android:parentActivityName=".Authentication.Login" />
         <activity
-            android:name=".EditProfile"
-            android:parentActivityName=".Beranda" />
-        <activity android:name=".FreeChat"
-            android:parentActivityName=".Beranda"/>
-        <activity android:name=".TipsTrik"
-            android:parentActivityName=".Beranda"></activity>
+            android:name=".Profil.EditProfile"
+            android:parentActivityName=".Home.Beranda" />
+        <activity
+            android:name=".FreeChatDir.FreeChat"
+            android:parentActivityName=".Home.Beranda" />
+        <activity
+            android:name=".Tips.TipsTrik"
+            android:parentActivityName=".Home.Beranda" />
+        <activity
+            android:name=".WorkOut"
+            android:parentActivityName=".Home.Beranda" />
+        <activity
+            android:name=".Program"
+            android:parentActivityName=".WorkOut" />
+        <activity
+            android:name=".ArmWorkout"
+            android:parentActivityName=".WorkOut" />
+        <activity
+            android:name=".AbsWorkout"
+            android:parentActivityName=".WorkOut" />
+        <activity
+            android:name=".LegWorkout"
+            android:parentActivityName=".WorkOut" />
+        <activity android:name=".DetailWorkout"
+            android:parentActivityName=".WorkOut"></activity>
     </application>
 
 </manifest>

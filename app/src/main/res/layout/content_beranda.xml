@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.detrening.detrening.Beranda"
+    tools:context="com.detrening.detrening.Home.Beranda"
     tools:showIn="@layout/app_bar_beranda"
     android:background="@drawable/theme">
 
@@ -22,7 +22,7 @@
             android:layout_alignParentStart="true"
 
             android:layout_alignParentTop="true"
-            android:text="Program"
+            android:text="Workout"
             android:textSize="35dp"
             android:shadowColor="@android:color/white"
 
@@ -40,7 +40,8 @@
             android:textSize="35dp"
             android:shadowColor="@android:color/white"
             android:textColor="@android:color/white"
-            android:background="@color/kuningorg"
+            android:background="@color/cyan"
+
             />
 
         <Button

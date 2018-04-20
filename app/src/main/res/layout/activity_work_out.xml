@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.detrening.detrening.WorkOut">
+
+    <Button
+        android:id="@+id/btnProg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Program"/>
+
+    <RelativeLayout
+        android:id="@+id/relWork"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/btnProg">
+        <Button
+            android:id="@+id/btnArm"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:text="Arm Workout"/>
+
+        <Button
+            android:id="@+id/btnAbs"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:text="Abs Workout" />
+
+        <Button
+            android:id="@+id/btnLeg"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:text="Leg Workout" />
+    </RelativeLayout>
+
+
+
+
+
+</RelativeLayout>

@@ -1,9 +1,11 @@
-package com.detrening.detrening;
+package com.detrening.detrening.Tips;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+
+import com.detrening.detrening.R;
 
 public class TipsTrik extends AppCompatActivity {
 

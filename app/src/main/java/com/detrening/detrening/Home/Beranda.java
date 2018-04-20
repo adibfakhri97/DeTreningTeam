@@ -1,11 +1,8 @@
-package com.detrening.detrening;
+package com.detrening.detrening.Home;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -16,23 +13,22 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
+import com.detrening.detrening.Authentication.Login;
+import com.detrening.detrening.Profil.EditProfile;
+import com.detrening.detrening.FreeChatDir.FreeChat;
+import com.detrening.detrening.R;
+import com.detrening.detrening.Tips.TipsTrik;
+import com.detrening.detrening.WorkOut;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import org.w3c.dom.Text;
 
 public class Beranda extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -48,7 +44,7 @@ public class Beranda extends AppCompatActivity
     FirebaseUser firebaseUser;
     Firebase mRef;
 
-    Button btnTips, btnChat;
+    Button btnTips, btnChat, btnProg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +91,15 @@ public class Beranda extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Beranda.this, TipsTrik.class);
+                startActivity(intent);
+            }
+        });
+
+        btnProg = (Button) findViewById(R.id.btnProgram);
+        btnProg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Beranda.this, WorkOut.class);
                 startActivity(intent);
             }
         });
@@ -208,11 +213,11 @@ public class Beranda extends AppCompatActivity
                 Intent intent = new Intent(Beranda.this, EditProfile.class);
                 startActivity(intent);
                 break;
-            case R.id.nav_beratBadan:
-                Toast.makeText(Beranda.this, "Weight and High", Toast.LENGTH_SHORT).show();
+
             case  R.id.nav_logOut:
                 Toast.makeText(Beranda.this, "Logout", Toast.LENGTH_SHORT).show();
                 fungsiLogout();
+                break;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

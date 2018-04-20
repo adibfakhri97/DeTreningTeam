@@ -1,4 +1,4 @@
-package com.detrening.detrening;
+package com.detrening.detrening.Home;
 
 /**
  * Created by adibf on 4/6/2018.
