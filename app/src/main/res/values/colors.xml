@@ -3,12 +3,14 @@
     <color name="colorPrimary">#3f51b5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="cyan">#089EB1</color>
+    <color name="cyan">#00788b</color>
     <color name="merah">#E24611</color>
     <color name="kuningorg">#D0CD13</color>
     <color name="purple">#7411E2</color>
     <color name="cyanterang">#00FFF2</color>
-    <color name="purple2">#6712A4</color>
+    <color name="purple2">#431861</color>
     <color name="orange">#EC7227</color>
+    <color name="navy">#00094b</color>
+    <color name="trans">#99000000 </color>
 
 </resources>

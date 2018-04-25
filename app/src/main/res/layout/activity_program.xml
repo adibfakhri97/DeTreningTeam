@@ -1,9 +1,637 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.detrening.detrening.Program">
+    tools:context="com.detrening.detrening.Program"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/theme">
 
-</android.support.constraint.ConstraintLayout>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:src="@drawable/logob"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Mulai program dengan mengklik Day"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"/>
+    <TextView
+        android:id="@+id/programUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email User"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"/>
+
+    <TextView
+        android:id="@+id/progressInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="%"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"/>
+    <Button
+        android:id="@+id/btnResetProg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reset Program"
+        android:onClick="resetProgram"/>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardCheck1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp">
+                <CheckBox
+                    android:id="@+id/checkbox1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Day 1"
+                    android:textSize="30dp"
+                    android:textStyle="italic"
+                    android:textAlignment="center"
+                    android:clickable="false"
+                    android:onClick="selectedItem"
+                    />
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardCheck2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp">
+                <CheckBox
+                    android:id="@+id/checkbox2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:onClick="selectedItem"
+                    android:text="Day 2"
+                    android:textSize="30dp"
+                    android:textStyle="italic"
+                    android:textAlignment="center"
+                    android:clickable="false"
+
+                    />
+            </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardCheck3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp">
+                <CheckBox
+                    android:id="@+id/checkbox3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Day 3"
+                    android:onClick="selectedItem"
+                    android:textSize="30dp"
+                    android:textStyle="italic"
+                    android:textAlignment="center"
+                    android:clickable="false"
+                    />
+            </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardCheck4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp">
+                <CheckBox
+                    android:id="@+id/checkbox4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Day 4"
+                    android:onClick="selectedItem"
+                    android:textSize="30dp"
+                    android:textStyle="italic"
+                    android:textAlignment="center"
+                    />
+            </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardCheck5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                >
+                <CheckBox
+                    android:id="@+id/checkbox5"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Day 5"
+                    android:textSize="30dp"
+                    android:textStyle="italic"
+                    android:onClick="selectedItem"
+                    android:textAlignment="center"
+
+                    />
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardCheck6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                >
+                <CheckBox
+                    android:id="@+id/checkbox6"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Day 6"
+                    android:textSize="30dp"
+                    android:textStyle="italic"
+                    android:onClick="selectedItem"
+                    android:textAlignment="center"
+
+                    />
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardCheck7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                >
+                <CheckBox
+                    android:id="@+id/checkbox7"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Day 7"
+                    android:textSize="30dp"
+                    android:textStyle="italic"
+                    android:onClick="selectedItem"
+                    android:textAlignment="center"
+
+                    />
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardCheck8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                >
+                <CheckBox
+                    android:id="@+id/checkbox8"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Day 8"
+                    android:textSize="30dp"
+                    android:textStyle="italic"
+                    android:onClick="selectedItem"
+                    android:textAlignment="center"
+
+                    />
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardCheck9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                >
+                <CheckBox
+                    android:id="@+id/checkbox9"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Day 9"
+                    android:textSize="30dp"
+                    android:textStyle="italic"
+                    android:onClick="selectedItem"
+                    android:textAlignment="center"
+
+                    />
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardCheck10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                >
+                <CheckBox
+                    android:id="@+id/checkbox10"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Day 10"
+                    android:textSize="30dp"
+                    android:textStyle="italic"
+                    android:onClick="selectedItem"
+                    android:textAlignment="center"
+
+                    />
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardCheck11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                >
+                <CheckBox
+                    android:id="@+id/checkbox11"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Day 11"
+                    android:textSize="30dp"
+                    android:textStyle="italic"
+                    android:onClick="selectedItem"
+                    android:textAlignment="center"
+
+                    />
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardCheck12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                >
+                <CheckBox
+                    android:id="@+id/checkbox12"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Day 12"
+                    android:textSize="30dp"
+                    android:textStyle="italic"
+                    android:onClick="selectedItem"
+                    android:textAlignment="center"
+
+                    />
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardCheck13"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                >
+                <CheckBox
+                    android:id="@+id/checkbox13"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Day 13"
+                    android:textSize="30dp"
+                    android:textStyle="italic"
+                    android:onClick="selectedItem"
+                    android:textAlignment="center"
+
+                    />
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardCheck14"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                >
+                <CheckBox
+                    android:id="@+id/checkbox14"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Day 14"
+                    android:textSize="30dp"
+                    android:textStyle="italic"
+                    android:onClick="selectedItem"
+                    android:textAlignment="center"
+
+                    />
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardCheck15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                >
+                <CheckBox
+                    android:id="@+id/checkbox15"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Day 15"
+                    android:textSize="30dp"
+                    android:textStyle="italic"
+                    android:onClick="selectedItem"
+                    android:textAlignment="center"
+
+                    />
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardCheck16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                >
+                <CheckBox
+                    android:id="@+id/checkbox16"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Day 16"
+                    android:textSize="30dp"
+                    android:textStyle="italic"
+                    android:onClick="selectedItem"
+                    android:textAlignment="center"
+
+                    />
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardCheck17"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                >
+                <CheckBox
+                    android:id="@+id/checkbox17"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Day 17"
+                    android:textSize="30dp"
+                    android:textStyle="italic"
+                    android:onClick="selectedItem"
+                    android:textAlignment="center"
+
+                    />
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardCheck18"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                >
+                <CheckBox
+                    android:id="@+id/checkbox18"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Day 18"
+                    android:textSize="30dp"
+                    android:textStyle="italic"
+                    android:onClick="selectedItem"
+                    android:textAlignment="center"
+
+                    />
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardCheck19"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                >
+                <CheckBox
+                    android:id="@+id/checkbox19"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Day 19"
+                    android:textSize="30dp"
+                    android:textStyle="italic"
+                    android:onClick="selectedItem"
+                    android:textAlignment="center"
+
+                    />
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardCheck20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                >
+                <CheckBox
+                    android:id="@+id/checkbox20"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Day 20"
+                    android:textSize="30dp"
+                    android:textStyle="italic"
+                    android:onClick="selectedItem"
+                    android:textAlignment="center"
+
+                    />
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardCheck21"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                >
+                <CheckBox
+                    android:id="@+id/checkbox21"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Day 21"
+                    android:textSize="30dp"
+                    android:textStyle="italic"
+                    android:onClick="selectedItem"
+                    android:textAlignment="center"
+
+                    />
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardCheck22"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                >
+                <CheckBox
+                    android:id="@+id/checkbox22"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Day 22"
+                    android:textSize="30dp"
+                    android:textStyle="italic"
+                    android:onClick="selectedItem"
+                    android:textAlignment="center"
+
+                    />
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardCheck23"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                >
+                <CheckBox
+                    android:id="@+id/checkbox23"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Day 23"
+                    android:textSize="30dp"
+                    android:textStyle="italic"
+                    android:onClick="selectedItem"
+                    android:textAlignment="center"
+
+                    />
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardCheck24"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                >
+                <CheckBox
+                    android:id="@+id/checkbox24"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Day 24"
+                    android:textSize="30dp"
+                    android:textStyle="italic"
+                    android:onClick="selectedItem"
+                    android:textAlignment="center"
+
+                    />
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardCheck25"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                >
+                <CheckBox
+                    android:id="@+id/checkbox25"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Day 25"
+                    android:textSize="30dp"
+                    android:textStyle="italic"
+                    android:onClick="selectedItem"
+                    android:textAlignment="center"
+
+                    />
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardCheck26"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                >
+                <CheckBox
+                    android:id="@+id/checkbox26"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Day 26"
+                    android:textSize="30dp"
+                    android:textStyle="italic"
+                    android:onClick="selectedItem"
+                    android:textAlignment="center"
+
+                    />
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardCheck27"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                >
+                <CheckBox
+                    android:id="@+id/checkbox27"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Day 27"
+                    android:textSize="30dp"
+                    android:textStyle="italic"
+                    android:onClick="selectedItem"
+                    android:textAlignment="center"
+
+                    />
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardCheck28"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                >
+                <CheckBox
+                    android:id="@+id/checkbox28"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Day 28"
+                    android:textSize="30dp"
+                    android:textStyle="italic"
+                    android:onClick="selectedItem"
+                    android:textAlignment="center"
+
+                    />
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardCheck29"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                >
+                <CheckBox
+                    android:id="@+id/checkbox29"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Day 29"
+                    android:textSize="30dp"
+                    android:textStyle="italic"
+                    android:onClick="selectedItem"
+                    android:textAlignment="center"
+
+                    />
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardCheck30"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                >
+                <CheckBox
+                    android:id="@+id/checkbox30"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Day 30"
+                    android:textSize="30dp"
+                    android:textStyle="italic"
+                    android:onClick="selectedItem"
+                    android:textAlignment="center"
+
+                    />
+            </android.support.v7.widget.CardView>
+
+
+
+
+        </LinearLayout>
+
+        </ScrollView>
+
+
+    </android.support.v7.widget.CardView>
+
+
+
+
+
+</LinearLayout>

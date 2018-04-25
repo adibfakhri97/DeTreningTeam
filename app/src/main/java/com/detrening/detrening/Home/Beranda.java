@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.detrening.detrening.Authentication.Login;
 import com.detrening.detrening.Profil.EditProfile;
 import com.detrening.detrening.FreeChatDir.FreeChat;
+import com.detrening.detrening.ProfilInfo;
 import com.detrening.detrening.R;
 import com.detrening.detrening.Tips.TipsTrik;
 import com.detrening.detrening.WorkOut;
@@ -27,17 +28,19 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-public class Beranda extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class Beranda extends AppCompatActivity {
     private FirebaseAuth nAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
     FirebaseDatabase firebaseInstance;
     DatabaseReference firebaseDatabase;
 
-    TextView infoNama, infoEmail, infoBerat, infoTinggi, infoIdeal;
+    TextView infoNama;
     ImageView infoFoto;
 
     public static String emailUser, infoUser;
@@ -46,15 +49,44 @@ public class Beranda extends AppCompatActivity
 
     Button btnTips, btnChat, btnProg;
 
+    DatabaseReference databaseReference;
+    String uID;
+    public static final String Database_Path = "DeTrening";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_beranda);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        setTitle("DeTrening");
+
 
         nAuth = FirebaseAuth.getInstance();
         firebaseUser = nAuth.getCurrentUser();
+        uID = firebaseUser.getUid();
+        databaseReference = FirebaseDatabase.getInstance().getReference(Database_Path);
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String nama = dataSnapshot.child(uID).child("nama").getValue(String.class);
+                String tinggi = dataSnapshot.child(uID).child("tinggi").getValue(String.class);
+                String berat = dataSnapshot.child(uID).child("berat").getValue(String.class);
+                String email = dataSnapshot.child(uID).child("user").getValue(String.class);
+
+//                infoNama.setText(nama);
+//                infoTinggi.setText(tinggi);
+//                infoBerat.setText(berat);
+//                infoEmail.setText(email);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
 
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -70,12 +102,6 @@ public class Beranda extends AppCompatActivity
             }
         };
 
-        infoFoto = (ImageView) findViewById(R.id.fotoInfo);
-        infoNama = (TextView) findViewById(R.id.namaInfo);
-        infoEmail = (TextView) findViewById(R.id.emailInfo);
-        infoBerat = (TextView) findViewById(R.id.beratInfo);
-        infoTinggi = (TextView) findViewById(R.id.tinggiInfo);
-        infoIdeal = (TextView) findViewById(R.id.idealInfo);
 
         btnChat = (Button) findViewById(R.id.btnFreeChat);
         btnChat.setOnClickListener(new View.OnClickListener() {
@@ -90,6 +116,7 @@ public class Beranda extends AppCompatActivity
         btnTips.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(Beranda.this, "We apologize for a while, we use the Muscle and Fitness website until our website is done", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(Beranda.this, TipsTrik.class);
                 startActivity(intent);
             }
@@ -128,18 +155,8 @@ public class Beranda extends AppCompatActivity
 //            }
 //        });
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
 
         emailUser = firebaseUser.getEmail().toString();
-
 
    //     loadInfo();
 
@@ -171,16 +188,6 @@ public class Beranda extends AppCompatActivity
 
 
     @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
-
-    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.beranda, menu);
@@ -192,37 +199,23 @@ public class Beranda extends AppCompatActivity
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-
         switch (item.getItemId()){
-            case R.id.nav_editProfile:
-                Toast.makeText(Beranda.this, "Edit Profile", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(Beranda.this, EditProfile.class);
-                startActivity(intent);
+            case R.id.nav_profileInfo:
+                Toast.makeText(Beranda.this, "Profile", Toast.LENGTH_SHORT).show();
+                Intent intent2 = new Intent(Beranda.this, ProfilInfo.class);
+                startActivity(intent2);
                 break;
-
+            //            case R.id.nav_reminder:
+//                Toast.makeText(Beranda.this, "Set Reminder", Toast.LENGTH_SHORT).show();
+//                startActivity(new Intent(Beranda.this, SetReminder.class));
+//                break;
             case  R.id.nav_logOut:
                 Toast.makeText(Beranda.this, "Logout", Toast.LENGTH_SHORT).show();
                 fungsiLogout();
                 break;
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

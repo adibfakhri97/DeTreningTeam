@@ -24,10 +24,11 @@ import pl.droidsonroids.gif.GifImageView;
 
 public class adapterWorkout extends RecyclerView.Adapter<adapterWorkout.ListViewHolder> {
 
-    static List<methodWorkout> listWork;
-    static Context context;
+ //   static List<methodWorkout> listWork;
+    List<methodWorkout> listWork;
+    Context context;
 
-    private GifImageView gambar;
+    GifImageView gambar;
 
 
 

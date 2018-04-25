@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context="com.detrening.detrening.AbsWorkout"
     android:orientation="vertical"
-    android:padding="8dp">
+    android:padding="8dp"
+    android:background="@drawable/theme">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerAbs"

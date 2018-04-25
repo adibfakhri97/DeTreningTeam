@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
@@ -14,14 +15,23 @@ import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.detrening.detrening.Authentication.Login;
 import com.detrening.detrening.Home.Beranda;
+import com.detrening.detrening.ProfilInfo;
 import com.detrening.detrening.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -30,16 +40,23 @@ import com.google.firebase.storage.UploadTask;
 import java.io.IOException;
 
 public class EditProfile extends AppCompatActivity {
+
+    private FirebaseAuth firebaseAuth;
+    private DatabaseReference databaseReference;
+
+
     String Storage_Path = "fotoprofile/";
     public static final String Database_Path = "DeTrening";
     EditText namaEdit, beratEdit, tinggiEdit;
+    TextView userEdit;
     ImageView fotoView;
     Uri FilePathUri;
-    StorageReference storageReference;
-    DatabaseReference databaseReference;
+    private StorageReference storageReference;
     int Image_Request_Code = 7;
     ProgressDialog progressDialog;
     Button btnPilih;
+    String uID;
+
 
 
     @Override
@@ -48,18 +65,36 @@ public class EditProfile extends AppCompatActivity {
         setContentView(R.layout.activity_edit_profile);
         setTitle("Edit Profile");
 
-        storageReference = FirebaseStorage.getInstance().getReference();
+        firebaseAuth = FirebaseAuth.getInstance();
+        if (firebaseAuth.getCurrentUser() == null){
+            finish();
+            startActivity(new Intent(this, Login.class));
+        }
+
         databaseReference = FirebaseDatabase.getInstance().getReference(Database_Path);
+
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+
+        String email = user.getEmail().toString();
+        uID = user.getUid();
+
+
+
+        storageReference = FirebaseStorage.getInstance().getReference();
+
 
         namaEdit = (EditText) findViewById(R.id.namaEdit);
         beratEdit = (EditText) findViewById(R.id.beratEdit);
         tinggiEdit = (EditText) findViewById(R.id.tinggiEdit);
+        userEdit = (TextView) findViewById(R.id.userEdit);
+        userEdit.setText(email);
 
         btnPilih = (Button) findViewById(R.id.btnFoto);
 
         fotoView = (ImageView) findViewById(R.id.fotoEdit);
 
         progressDialog = new ProgressDialog(EditProfile.this);
+
 
 
     }
@@ -72,35 +107,6 @@ public class EditProfile extends AppCompatActivity {
     }
 
     public void fungsiEdit(View view) {
-        UploadImage();
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == Image_Request_Code && resultCode == RESULT_OK && data != null && data.getData() != null){
-
-            FilePathUri = data.getData();
-
-            try {
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), FilePathUri);
-                fotoView.setImageBitmap(bitmap);
-                btnPilih.setText("Image Selected");
-            }
-            catch (IOException e){
-                e.printStackTrace();
-            }
-        }
-    }
-
-    public String GetFileExtension(Uri uri){
-        ContentResolver contentResolver = getContentResolver();
-        MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
-        return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
-    }
-
-    public void UploadImage(){
         if (FilePathUri != null){
             progressDialog.setTitle("Menyimpan Profile...");
             progressDialog.show();
@@ -112,16 +118,17 @@ public class EditProfile extends AppCompatActivity {
                     String tinggi = tinggiEdit.getText().toString().trim();
                     String berat = beratEdit.getText().toString().trim();
 
+                    @SuppressWarnings("VisibleForTests")
+                    AdapterProfile imageUploadInfo = new AdapterProfile(nama,tinggi,berat, Beranda.emailUser, taskSnapshot.getDownloadUrl().toString());
+
+                    FirebaseUser user = firebaseAuth.getCurrentUser();
+                    databaseReference.child(user.getUid()).setValue(imageUploadInfo);
+
                     progressDialog.dismiss();
 
                     Toast.makeText(getApplicationContext(), "Profil berhasil disimpan", Toast.LENGTH_SHORT).show();
 
-                    @SuppressWarnings("VisibleForTests")
-                    AdapterProfile imageUploadInfo = new AdapterProfile(nama,tinggi,berat, taskSnapshot.getDownloadUrl().toString(), Beranda.emailUser);
-
-                    String ImageUploadId = databaseReference.push().getKey();
-                    databaseReference.child(ImageUploadId).setValue(imageUploadInfo);
-                    Intent intent = new Intent(EditProfile.this, Beranda.class);
+                    Intent intent = new Intent(EditProfile.this, ProfilInfo.class);
                     startActivity(intent);
                     finish();
 
@@ -144,5 +151,29 @@ public class EditProfile extends AppCompatActivity {
         } else {
             Toast.makeText(EditProfile.this, "Pilih Gambar", Toast.LENGTH_LONG).show();
         }
+
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == Image_Request_Code && resultCode == RESULT_OK && data != null && data.getData() != null){
+
+            FilePathUri = data.getData();
+
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), FilePathUri);
+                fotoView.setImageBitmap(bitmap);
+                btnPilih.setText("Image Selected");
+            }
+            catch (IOException e){
+                e.printStackTrace();
+            }
+        }
+    }
+    public String GetFileExtension(Uri uri){
+        ContentResolver contentResolver = getContentResolver();
+        MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
+       return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
+    }
+
 }

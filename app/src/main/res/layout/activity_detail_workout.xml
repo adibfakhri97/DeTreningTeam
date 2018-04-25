@@ -4,13 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.detrening.detrening.DetailWorkout">
+    tools:context="com.detrening.detrening.DetailWorkout"
+    android:background="@drawable/theme">
 
-    <pl.droidsonroids.gif.GifImageView
-        android:id="@+id/detailGif"
+    <android.support.v7.widget.CardView
+        android:id="@+id/crVW"
         android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:src="@drawable/giphy"/>
+        android:layout_height="wrap_content"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:background="@color/trans"
+            android:backgroundTint="@color/navy"
+            >
+            <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/detailGif"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_centerHorizontal="true" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
 
     <TextView
         android:id="@+id/detailJudul"
@@ -19,7 +36,7 @@
         android:text="Judul Gerakan"
         android:textAlignment="center"
         android:textColor="@android:color/black"
-        android:layout_below="@id/detailGif"
+        android:layout_below="@id/crVW"
         android:textSize="25dp"/>
 
     <ScrollView

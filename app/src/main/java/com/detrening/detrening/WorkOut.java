@@ -6,14 +6,22 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.detrening.detrening.Authentication.Login;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class WorkOut extends AppCompatActivity {
     Button btnProg, btnArm, btnAbs, btnLeg;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_work_out);
         setTitle("Workout");
+
 
         btnProg = (Button) findViewById(R.id.btnProg);
         btnProg.setOnClickListener(new View.OnClickListener() {

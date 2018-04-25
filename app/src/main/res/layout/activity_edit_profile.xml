@@ -1,36 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.detrening.detrening.Profil.EditProfile"
+    android:background="@drawable/theme"
     >
 
-    <RelativeLayout
-        android:id="@+id/relEdit"
+    <android.support.v7.widget.CardView
+        android:id="@+id/cr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:id="@+id/relEdit"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="7dp"
+            android:paddingBottom="7dp"
+            android:background="@color/trans"
+            android:backgroundTint="@color/navy">
+            <ImageView
+                android:id="@+id/fotoEdit"
+                android:layout_width="fill_parent"
+                android:layout_height="150dp"
+                android:src="@drawable/ic_account_circle_black_24dp"
+                android:layout_centerHorizontal="true"/>
+
+            <Button
+                android:id="@+id/btnFoto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/fotoEdit"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/buttonshape"
+                android:onClick="pilihFoto"
+                android:text="Choose Image"
+                android:backgroundTint="@color/cyan"/>
+            <TextView
+                android:id="@+id/userEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btnFoto"
+                android:layout_centerHorizontal="true"
+                android:text="Email" />
+
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:paddingTop="7dp"
-        android:paddingBottom="7dp">
-        <ImageView
-            android:id="@+id/fotoEdit"
-            android:layout_width="fill_parent"
-            android:layout_height="150dp"
-            android:src="@drawable/ic_account_circle_black_24dp"
-            android:layout_centerHorizontal="true"/>
-
-        <Button
-            android:id="@+id/btnFoto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/fotoEdit"
-            android:layout_centerHorizontal="true"
-            android:text="Choose Image"
-            android:backgroundTint="@color/kuningorg"
-            android:onClick="pilihFoto"/>
+        android:layout_below="@id/cr"
+        android:orientation="vertical"
+        android:paddingTop="15dp"
+        >
 
         <EditText
             android:id="@+id/namaEdit"
@@ -72,8 +100,12 @@
             android:layout_below="@id/tinggiEdit"
             android:backgroundTint="@color/cyanterang"
             android:onClick="fungsiEdit"/>
-    </RelativeLayout>
+
+
+    </LinearLayout>
 
 
 
-</android.support.design.widget.CoordinatorLayout>
+
+
+</RelativeLayout>
